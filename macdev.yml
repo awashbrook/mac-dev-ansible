@@ -1,0 +1,36 @@
+---
+- hosts: localhost
+
+  tasks:
+    - name: Install Grafana
+      ansible.builtin.package:
+        name: grafana
+    - name: Install Checkov
+      ansible.builtin.package:
+        name: checkov
+    - name: Install Fish
+      ansible.builtin.package:
+        name: fish
+    - name: Install AWS CLI
+      ansible.builtin.package:
+        name: awscli
+    - name: Install Terraform
+      ansible.builtin.package:
+        name: terraform
+    - name: Install TFLint
+      ansible.builtin.package:
+        name: tflint
+    - name: Install Redis
+      ansible.builtin.package:
+        name: redis
+    # - name: Install openjdk
+    #   ansible.builtin.package:
+    #     name: openjdk
+    # - name: Install Maven
+    #   ansible.builtin.package:
+    #     name: maven
+    # Cask install a bit less reliable
+    - name: Install Sentinel
+      ansible.builtin.package:
+        name: sentinel
+
