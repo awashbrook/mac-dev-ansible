@@ -1,0 +1,16 @@
+-
+  name: filefiddle
+  hosts: localhost
+  tasks:
+    - 
+       name: Ensure we have a comment in first line
+       ansible.builtin.lineinfile:
+        path: ./random.txt
+        insertbefore: 'BOF'
+        line: '# First Line'
+    - 
+       name: Ensure we have a comment in last line
+       ansible.builtin.lineinfile:
+        path: ./random.txt
+        insertbefore: 'EOF'
+        line: '# Last Line'
