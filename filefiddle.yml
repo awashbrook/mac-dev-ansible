@@ -1,16 +1,23 @@
 -
   name: filefiddle
   hosts: localhost
+  vars: 
+    test_file: './random.txt'
   tasks:
+    - name: Create a one liner file
+      ansible.builtin.lineinfile:
+        path: '{{ test_file }}'
+        create: yes
+        line: quark
     - 
        name: Ensure we have a comment in first line
        ansible.builtin.lineinfile:
-        path: './random.txt'
+        path: '{{ test_file }}'
         insertbefore: 'BOF'
         line: '# First Line'
     - 
        name: Ensure we have a comment in last line
        ansible.builtin.lineinfile:
-        path: './random.txt'
+        path: '{{ test_file }}'
         insertafter: 'EOF'
         line: '# Last Line'
