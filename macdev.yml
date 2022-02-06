@@ -5,32 +5,40 @@
     - name: Install Grafana
       ansible.builtin.package:
         name: grafana
-    - name: Install Checkov
-      ansible.builtin.package:
-        name: checkov
     - name: Install Fish
       ansible.builtin.package:
         name: fish
+    - name: Install JQ
+      ansible.builtin.package:
+        name: jq
     - name: Install AWS CLI
       ansible.builtin.package:
         name: awscli
     - name: Install Terraform
       ansible.builtin.package:
         name: terraform
+    - name: Install Vault
+      ansible.builtin.package:
+        name: vault
     - name: Install TFLint
       ansible.builtin.package:
         name: tflint
+    - name: Install Checkov
+      ansible.builtin.package:
+        name: checkov
     - name: Install Redis
       ansible.builtin.package:
         name: redis
+    # Java resource consuming
     # - name: Install openjdk
     #   ansible.builtin.package:
     #     name: openjdk
     # - name: Install Maven
     #   ansible.builtin.package:
     #     name: maven
+
     # Cask install a bit less reliable
-    - name: Install Sentinel
-      ansible.builtin.package:
-        name: sentinel
+    # - name: Install Sentinel
+    #   ansible.builtin.package:
+    #     name: sentinel
 
