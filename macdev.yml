@@ -29,14 +29,16 @@
     - name: Install Redis
       ansible.builtin.package:
         name: redis
-    # Java resource consuming
-    # - name: Install openjdk
-    #   ansible.builtin.package:
-    #     name: openjdk
-    # - name: Install Maven
-    #   ansible.builtin.package:
-    #     name: maven
-
+    - name: Install bind suite including dig
+      ansible.builtin.package:
+        name: bind
+    # Java is resource consuming
+    - name: Install openjdk
+      ansible.builtin.package:
+        name: openjdk
+    - name: Install Maven
+      ansible.builtin.package:
+        name: maven
     # Cask install a bit less reliable
     # - name: Install Sentinel
     #   ansible.builtin.package:
