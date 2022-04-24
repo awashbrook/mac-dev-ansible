@@ -1,6 +1,7 @@
 ---
 - hosts: localhost
-
+  vars: 
+    rc_file: '~/.zshrc'
   tasks:
     - name: Install Grafana
       ansible.builtin.package:
@@ -28,16 +29,43 @@
         name: checkov
     - name: Install Redis
       ansible.builtin.package:
-        name: redis
-    # Java resource consuming
-    # - name: Install openjdk
-    #   ansible.builtin.package:
-    #     name: openjdk
-    # - name: Install Maven
-    #   ansible.builtin.package:
-    #     name: maven
-
-    # Cask install a bit less reliable
+        name: redis 
+    # TODO Fix NVM install
+    # - name: Install NVM
+    #   ansible.builtin.command: 'curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash'
+    # 
+    # Below are resource intensive or unreliable installs
+    # 
+    - name: Install bind suite including dig
+      ansible.builtin.package:
+        name: bind
+    - name: Install openjdk
+      ansible.builtin.package:
+        name: openjdk
+    - name: Install Maven
+      ansible.builtin.package:
+        name: maven
+    - name: Install Groovy
+      ansible.builtin.package:
+        name: groovy
+    - 
+      name: Ensure JAVA_HOME set in desired shell RC
+      ansible.builtin.lineinfile:
+        path: '{{ rc_file }}'
+        insertafter: 'EOF'
+        line: 'export JAVA_HOME=/opt/homebrew/opt/java/'
+    - 
+      name: Ensure GROOVY_HOME set in desired shell RC
+      ansible.builtin.lineinfile:
+        path: '{{ rc_file }}'
+        insertafter: 'EOF'
+        line: 'export GROOVY_HOME=/opt/homebrew/opt/groovy/libexec'
+    - 
+      name: Ensure we have a comment in last line of edited files
+      ansible.builtin.lineinfile:
+        path: '{{ rc_file }}'
+        insertafter: 'EOF'
+        line: '# AUTO EDITED BY ANSIBLE'    # Cask install a bit less reliable
     # - name: Install Sentinel
     #   ansible.builtin.package:
     #     name: sentinel
