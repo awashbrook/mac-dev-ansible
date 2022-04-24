@@ -29,16 +29,23 @@
     - name: Install Redis
       ansible.builtin.package:
         name: redis
+    - name: Install NVM
+      ansible.builtin.command: 'curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash'
+    # 
+    # Below are resource intensive or unreliable installs
+    # 
     - name: Install bind suite including dig
       ansible.builtin.package:
         name: bind
-    # Java is resource consuming
     - name: Install openjdk
       ansible.builtin.package:
         name: openjdk
     - name: Install Maven
       ansible.builtin.package:
         name: maven
+    - name: Install Groovy
+      ansible.builtin.package:
+        name: groovy
     # Cask install a bit less reliable
     # - name: Install Sentinel
     #   ansible.builtin.package:
