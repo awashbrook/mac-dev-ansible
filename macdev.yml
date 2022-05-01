@@ -27,13 +27,16 @@
     - name: Install Checkov
       ansible.builtin.package:
         name: checkov
+    - name: Install CFN Lint
+      ansible.builtin.package:
+        name: cfn-lint
     - name: Install Redis
       ansible.builtin.package:
         name: redis 
     # TODO Fix NVM install
     # - name: Install NVM
     #   ansible.builtin.command: 'curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash'
-    # 
+    
     # Below are resource intensive or unreliable installs
     # 
     - name: Install bind suite including dig
