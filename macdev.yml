@@ -6,6 +6,9 @@
     - name: Install Grafana
       ansible.builtin.package:
         name: grafana
+    - name: Install K8s CLI
+      ansible.builtin.package:
+        name: kubectl
     - name: Install Fish
       ansible.builtin.package:
         name: fish
